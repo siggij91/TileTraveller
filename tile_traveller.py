@@ -7,17 +7,7 @@
 #Once in new tile, show the allowable moves
 #Once player enters 3, 1 show them that they win.
 
-SQ11 = 'N'
-SQ12 = 'NES'
-SQ13 = 'ES'
-SQ21 = 'N'
-SQ22 = 'SW'
-SQ23 = 'EW'
-SQ31 = 'N'
-SQ32 = 'NS'
-SQ33 = 'SW'
 
-current_square = SQ11
 
 def can_move(current_square):
     
@@ -51,10 +41,47 @@ def can_move(current_square):
         
     return print(prt_str)         
             
-can_move(current_square)
+def select_move(current_square, x, y):
+    
+    move = str(input('Direction: '))
+    
+    for char in current_square:
+        
+        if move.upper() == 'N' and move.upper() == char:
+            y += 1
+            break
+        elif move.upper() == 'E' and move.upper() == char:
+            x += 1
+            break
+        elif move.upper() == 'S' and move.upper() == char:
+            y -= 1
+            break
+        elif move.upper() == 'W' and move.upper() == char:
+            x -= 1
+            break
+    else:
+        print('Not a valid direction!')
+        
 
-# while current_square != SQ31:
-#     can_move()
-#     select_move()
-# else:
-#     print("Victory!")
+    return x, y
+        
+SQ = [['N','N','N'],
+['NES','SW','NS'],
+['ES','EW','SW']]
+
+x = 1
+y = 1
+current_square = SQ[y-1][x-1]
+
+while True:
+    can_move(current_square)
+    x, y = select_move(current_square, x, y)
+    current_square = SQ[y-1][x-1]
+
+    if x == 3 and y == 1:
+        print('Victory!')
+        break
+
+
+    
+    
