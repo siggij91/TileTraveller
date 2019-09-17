@@ -11,16 +11,50 @@ SQ11 = 'N'
 SQ12 = 'NES'
 SQ13 = 'ES'
 SQ21 = 'N'
-SQ22 = 'WS'
-SQ23 = 'WE'
+SQ22 = 'SW'
+SQ23 = 'EW'
 SQ31 = 'N'
 SQ32 = 'NS'
-SQ33 = 'WS'
+SQ33 = 'SW'
 
 current_square = SQ11
 
-while current_square != SQ31:
-    can_move()
-    select_move()
-else:
-    print("Victory!")
+def can_move(current_square):
+    
+    prt_str = 'You can travel: '
+    length = len(current_square)
+    
+    for char in current_square:
+        if char == 'N' and length == 1:
+            prt_str += '(N)orth.'
+        elif char == 'N': 
+            length -= 1
+            prt_str += '(N)orth or '
+        
+        if char == 'E' and length == 1:
+            prt_str += '(E)ast.'
+        elif char == 'E': 
+            length -= 1
+            prt_str += '(E)ast or '
+        
+        if char == 'S' and length == 1:
+            prt_str += '(S)outh.'
+        elif char == 'S': 
+            length -= 1
+            prt_str += '(S)outh or '
+        
+        if char == 'W' and length == 1:
+            prt_str += '(W)est.'
+        elif char == 'W': 
+            length -= 1
+            prt_str += '(W)est or '
+        
+    return print(prt_str)         
+            
+can_move(current_square)
+
+# while current_square != SQ31:
+#     can_move()
+#     select_move()
+# else:
+#     print("Victory!")
