@@ -43,24 +43,32 @@ def can_move(current_square):
             
 def select_move(current_square, x, y):
     
-    move = str(input('Direction: '))
-    
-    for char in current_square:
+    loop_continue = True
+
+    while loop_continue:
         
-        if move.upper() == 'N' and move.upper() == char:
-            y += 1
-            break
-        elif move.upper() == 'E' and move.upper() == char:
-            x += 1
-            break
-        elif move.upper() == 'S' and move.upper() == char:
-            y -= 1
-            break
-        elif move.upper() == 'W' and move.upper() == char:
-            x -= 1
-            break
-    else:
-        print('Not a valid direction!')
+        move = str(input('Direction: '))
+    
+        for char in current_square:
+            
+            if move.upper() == 'N' and move.upper() == char:
+                y += 1
+                loop_continue = False
+                break
+            elif move.upper() == 'E' and move.upper() == char:
+                x += 1
+                loop_continue = False
+                break
+            elif move.upper() == 'S' and move.upper() == char:
+                y -= 1
+                loop_continue = False
+                break
+            elif move.upper() == 'W' and move.upper() == char:
+                x -= 1
+                loop_continue = False
+                break
+        else:
+            print('Not a valid direction!')
         
 
     return x, y
